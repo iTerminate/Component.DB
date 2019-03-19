@@ -31,6 +31,9 @@ support-mysql:
 clean-db:
 	$(TOP)/sbin/cdb_create_db.sh cdb $(TOP)/db/sql/clean
 
+sample-db:
+	$(TOP)/sbin/cdb_create_db.sh cdb $(TOP)/db/sql/sample
+
 db:
 	$(TOP)/sbin/cdb_create_db.sh
 
