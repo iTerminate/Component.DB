@@ -1,0 +1,1 @@
+../clean/populate_connector_type.sql

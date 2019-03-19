@@ -1,0 +1,1 @@
+../clean/populate_property_type_category.sql

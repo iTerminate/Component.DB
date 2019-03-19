@@ -1,0 +1,1 @@
+../clean/populate_resource_type.sql

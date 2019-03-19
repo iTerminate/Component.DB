@@ -1,0 +1,1 @@
+../clean/populate_setting_type.sql

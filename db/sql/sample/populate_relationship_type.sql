@@ -1,0 +1,1 @@
+../clean/populate_relationship_type.sql
