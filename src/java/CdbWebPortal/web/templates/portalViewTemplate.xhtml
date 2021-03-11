@@ -172,6 +172,13 @@ See LICENSE file.
                                                  action="#{clientViewManagerController.redrectToLastShownUrl()}" />
                             </f:facet>
                         </p:dialog>
+                        
+                        <p:panel widgetVar="invalidUseOfMultipleTabsPanelWidget"
+                                 collapsed="true">
+                            <div style="padding-bottom: 25px; color: red">
+                                This page is read only. Another CDB tab is newer and is active tab to the users session.
+                            </div>
+                        </p:panel>
 
                         <p:dialog widgetVar="invalidUseOfMultipleTabsDialogWidget"
                                   modal="true"
@@ -225,7 +232,7 @@ See LICENSE file.
                                                  onclick="handleSessionTimeout('#{pathContextRoot}');" />
                             </f:facet>
                         </p:dialog>                       
-                        <h:outputScript library="javascript" name="sessionTimeout.js"/>
+                        
                         <h:outputScript library="javascript" name="portal.js"/>
                     </h:form>
                     <footer>

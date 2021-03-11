@@ -18,7 +18,7 @@ import gov.anl.aps.cdb.portal.view.objects.ImportExportFormatInfo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -26,14 +26,14 @@ import javax.inject.Named;
  * @author djarosz
  */
 @Named(ItemDomainCableCatalogController.CONTROLLER_NAMED)
-@SessionScoped
+@ViewScoped
 public class ItemDomainCableCatalogController extends ItemDomainCatalogBaseController<ItemDomainCableCatalogControllerUtility, ItemDomainCableCatalog, ItemDomainCableCatalogFacade, ItemDomainCableCatalogSettings> {
-    
+
     public static final String CONTROLLER_NAMED = "itemDomainCableCatalogController";
-    
+
     @EJB
     ItemDomainCableCatalogFacade itemDomainCableCatalogFacade;
-    
+
     public static ItemDomainCableCatalogController getInstance() {
         if (SessionUtility.runningFaces()) {
             return (ItemDomainCableCatalogController) SessionUtility.findBean(ItemDomainCableCatalogController.CONTROLLER_NAMED);
@@ -42,11 +42,11 @@ public class ItemDomainCableCatalogController extends ItemDomainCatalogBaseContr
             return null;
         }
     }
-    
+
     @Override
     public ItemMultiEditController getItemMultiEditController() {
         return ItemMultiEditDomainCableCatalogController.getInstance();
-    }    
+    }
 
     @Override
     protected ItemDomainCableCatalogSettings createNewSettingObject() {
@@ -55,22 +55,22 @@ public class ItemDomainCableCatalogController extends ItemDomainCatalogBaseContr
 
     @Override
     protected ItemDomainCableCatalogFacade getEntityDbFacade() {
-        return itemDomainCableCatalogFacade; 
+        return itemDomainCableCatalogFacade;
     }
 
     @Override
     public String getDefaultDomainName() {
-        return ItemDomainName.cableCatalog.getValue(); 
+        return ItemDomainName.cableCatalog.getValue();
     }
 
     @Override
     public boolean getEntityDisplayItemElements() {
-        return false; 
+        return false;
     }
 
     @Override
     public boolean getEntityDisplayItemMemberships() {
-        return false; 
+        return false;
     }
 
     @Override
@@ -80,18 +80,18 @@ public class ItemDomainCableCatalogController extends ItemDomainCatalogBaseContr
 
     @Override
     public String getStyleName() {
-        return "catalog"; 
+        return "catalog";
     }
 
     @Override
     public String getDefaultDomainDerivedToDomainName() {
-        return ItemDomainName.cableInventory.getValue(); 
-    } 
-    
+        return ItemDomainName.cableInventory.getValue();
+    }
+
     @Override
     public boolean getEntityDisplayItemConnectors() {
-        return true; 
-    }    
+        return true;
+    }
 
     @Override
     public boolean getEntityDisplayImportButton() {
@@ -100,18 +100,18 @@ public class ItemDomainCableCatalogController extends ItemDomainCatalogBaseContr
 
     @Override
     protected DomainImportExportInfo initializeDomainImportInfo() {
-        
+
         List<ImportExportFormatInfo> formatInfo = new ArrayList<>();
         formatInfo.add(new ImportExportFormatInfo("Basic Cable Catalog Format", ImportHelperCableCatalog.class));
-        
+
         String completionUrl = "/views/itemDomainCableCatalog/list?faces-redirect=true";
-        
+
         return new DomainImportExportInfo(formatInfo, completionUrl);
     }
 
     @Override
     protected ItemDomainCableCatalogControllerUtility createControllerUtilityInstance() {
-        return new ItemDomainCableCatalogControllerUtility(); 
+        return new ItemDomainCableCatalogControllerUtility();
     }
-    
+
 }

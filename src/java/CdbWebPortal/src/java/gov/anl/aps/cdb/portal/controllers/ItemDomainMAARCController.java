@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,7 +48,7 @@ import org.primefaces.model.StreamedContent;
  * @author djarosz
  */
 @Named("itemDomainMAARCController")
-@SessionScoped
+@ViewScoped
 public class ItemDomainMAARCController extends ItemController<ItemDomainMAARCControllerUtility, ItemDomainMAARC, ItemDomainMAARCFacade, ItemDomainMAARCSettings> {
     
     public static final String MAARC_CONNECTION_RELATIONSHIP_TYPE_NAME = "MAARC Connection";

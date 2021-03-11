@@ -17,6 +17,7 @@ import gov.anl.aps.cdb.portal.controllers.utilities.ItemControllerUtility;
 import gov.anl.aps.cdb.portal.controllers.extensions.ItemCreateWizardController;
 import gov.anl.aps.cdb.portal.controllers.extensions.ItemEnforcedPropertiesController;
 import gov.anl.aps.cdb.portal.controllers.extensions.ItemMultiEditController;
+import gov.anl.aps.cdb.portal.controllers.extensions.ItemSessionScopedController;
 import gov.anl.aps.cdb.portal.controllers.settings.ItemSettings;
 import gov.anl.aps.cdb.portal.controllers.utilities.ConnectorControllerUtility;
 import gov.anl.aps.cdb.portal.model.db.beans.AllowedPropertyMetadataValueFacade;
@@ -744,6 +745,10 @@ public abstract class ItemController<
 
     public boolean isDataTableNotScoped() {
         return settingObject.getDisplayListDataModelScope().equals(ItemDisplayListDataModelScope.showAll.getValue());
+    }
+    
+    public ItemSessionScopedController getItemSessionScopedController() {
+        return null; 
     }
 
     public final DataModel getScopedListDataModel() {

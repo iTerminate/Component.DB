@@ -6,10 +6,11 @@
 CDB_HOST_ARCH=$(uname -sm | tr -s '[:upper:][:blank:]' '[:lower:][\-]')
 CDB_HOSTNAME=`hostname -f`
 
-NETBEANS_VERSION=11.0
-NETBEANS_ZIP_FILE=incubating-netbeans-$NETBEANS_VERSION-bin.zip
+NETBEANS_VERSION=12.2
+NETBEANS_ZIP_FILE=netbeans-$NETBEANS_VERSION-bin.zip
 
-DOWNLOAD_URL=https://archive.apache.org/dist/incubator/netbeans/incubating-netbeans/incubating-$NETBEANS_VERSION/$NETBEANS_ZIP_FILE
+DOWNLOAD_URL=https://mirrors.ocf.berkeley.edu/apache/netbeans/netbeans/$NETBEANS_VERSION/$NETBEANS_ZIP_FILE
+#netbeans/12.2/netbeans-12.2-bin.zip
 
 currentDir=`pwd`
 cd `dirname $0`/.. && topDir=`pwd`

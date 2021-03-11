@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.ListDataModel;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,7 +34,7 @@ import org.primefaces.model.TreeNode;
  * @author craig
  */
 @Named(ItemDomainMachineDesignDeletedItemsController.CONTROLLER_NAMED)
-@SessionScoped
+@ViewScoped
 public class ItemDomainMachineDesignDeletedItemsController extends ItemDomainMachineDesignController {
 
     public final static String CONTROLLER_NAMED = "itemDomainMachineDesignDeletedItemsController";

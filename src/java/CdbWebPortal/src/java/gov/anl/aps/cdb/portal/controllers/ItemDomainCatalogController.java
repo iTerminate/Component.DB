@@ -8,6 +8,8 @@ import gov.anl.aps.cdb.portal.import_export.import_.helpers.ImportHelperCatalog;
 import gov.anl.aps.cdb.portal.import_export.import_.helpers.ImportHelperCatalogAssembly;
 import gov.anl.aps.cdb.portal.controllers.extensions.ItemMultiEditController;
 import gov.anl.aps.cdb.portal.controllers.extensions.ItemMultiEditDomainCatalogController;
+import gov.anl.aps.cdb.portal.controllers.extensions.ItemSessionScopedCatalogController;
+import gov.anl.aps.cdb.portal.controllers.extensions.ItemSessionScopedController;
 import gov.anl.aps.cdb.portal.controllers.settings.ItemDomainCatalogSettings;
 import gov.anl.aps.cdb.portal.controllers.utilities.ItemDomainCatalogControllerUtility;
 import gov.anl.aps.cdb.portal.model.db.beans.ItemDomainCatalogFacade;
@@ -20,7 +22,7 @@ import gov.anl.aps.cdb.portal.view.objects.ImportExportFormatInfo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +32,7 @@ import org.apache.logging.log4j.Logger;
  * @author djarosz
  */
 @Named(ItemDomainCatalogController.CONTROLLER_NAMED)
-@SessionScoped
+@ViewScoped
 public class ItemDomainCatalogController extends ItemDomainCatalogBaseController<ItemDomainCatalogControllerUtility, ItemDomainCatalog, ItemDomainCatalogFacade, ItemDomainCatalogSettings> {
 
     private static final Logger logger = LogManager.getLogger(ItemDomainCatalogController.class.getName());
@@ -70,6 +72,11 @@ public class ItemDomainCatalogController extends ItemDomainCatalogBaseController
     @Override
     public boolean getEntityDisplayImportButton() {
         return true;
+    } 
+
+    @Override
+    public ItemSessionScopedController getItemSessionScopedController() {
+        return ItemSessionScopedCatalogController.getInstance(); 
     }
 
     @Override

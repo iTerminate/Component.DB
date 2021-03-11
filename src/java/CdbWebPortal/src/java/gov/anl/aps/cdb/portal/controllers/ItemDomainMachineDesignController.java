@@ -13,6 +13,8 @@ import gov.anl.aps.cdb.portal.constants.ItemDomainName;
 import gov.anl.aps.cdb.portal.constants.PortalStyles;
 import gov.anl.aps.cdb.portal.controllers.extensions.BundleWizard;
 import gov.anl.aps.cdb.portal.controllers.extensions.CircuitWizard;
+import gov.anl.aps.cdb.portal.controllers.extensions.ItemSessionScopedController;
+import gov.anl.aps.cdb.portal.controllers.extensions.ItemSessionScopedDomainMachineDesignController;
 import gov.anl.aps.cdb.portal.controllers.settings.ItemDomainMachineDesignSettings;
 import gov.anl.aps.cdb.portal.controllers.utilities.ItemDomainMachineDesignControllerUtility;
 import gov.anl.aps.cdb.portal.import_export.import_.helpers.ImportHelperMachineHierarchy;
@@ -59,6 +61,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -72,7 +75,7 @@ import org.primefaces.model.TreeNode;
  * @author djarosz
  */
 @Named(ItemDomainMachineDesignController.controllerNamed)
-@SessionScoped
+@ViewScoped
 public class ItemDomainMachineDesignController
         extends ItemController<ItemDomainMachineDesignControllerUtility, ItemDomainMachineDesign, ItemDomainMachineDesignFacade, ItemDomainMachineDesignSettings>
         implements ItemDomainCableDesignWizardClient {
@@ -114,8 +117,7 @@ public class ItemDomainMachineDesignController
     private TreeNode selectedItemInListTreeTable = null;
     private TreeNode lastExpandedNode = null;
 
-    private ItemDomainMachineDesignTreeNode currentMachineDesignListRootTreeNode = null;
-    private ItemDomainMachineDesignTreeNode machineDesignTreeRootTreeNode = null;
+    private ItemDomainMachineDesignTreeNode currentMachineDesignListRootTreeNode = null;    
     private ItemDomainMachineDesignTreeNode machineDesignTemplateRootTreeNode = null;
     private boolean currentViewIsTemplate = false;   
 
@@ -288,7 +290,7 @@ public class ItemDomainMachineDesignController
         super.resetListDataModel();
         currentMachineDesignListRootTreeNode = null;
         machineDesignTemplateRootTreeNode = null;
-        machineDesignTreeRootTreeNode = null;        
+        //machineDesignTreeRootTreeNode = null;        
     }
     // </editor-fold>   
 
@@ -301,18 +303,16 @@ public class ItemDomainMachineDesignController
                 if (favoritesShown) {
                     currentMachineDesignListRootTreeNode = getFavoriteMachineDesignTreeRootTreeNode();
                 } else {
-                    currentMachineDesignListRootTreeNode = getMachineDesignTreeRootTreeNode();
+                    currentMachineDesignListRootTreeNode = getItemSessionScopedController().getMachineDesignTreeRootTreeNode();
                 }
             }
         }
         return currentMachineDesignListRootTreeNode;
-    }
+    } 
 
-    public ItemDomainMachineDesignTreeNode getMachineDesignTreeRootTreeNode() {
-        if (machineDesignTreeRootTreeNode == null) {
-            machineDesignTreeRootTreeNode = loadMachineDesignRootTreeNode();
-        }
-        return machineDesignTreeRootTreeNode;
+    @Override
+    public ItemSessionScopedDomainMachineDesignController getItemSessionScopedController() {
+        return ItemSessionScopedDomainMachineDesignController.getInstance(); 
     }
 
     public ItemDomainMachineDesignTreeNode getMachineDesignTemplateRootTreeNode() {

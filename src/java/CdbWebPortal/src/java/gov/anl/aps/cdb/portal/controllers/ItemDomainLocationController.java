@@ -28,7 +28,7 @@ import gov.anl.aps.cdb.portal.view.objects.ItemHierarchyCache;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,7 +37,7 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 
 @Named(ItemDomainLocationController.controllerNamed)
-@SessionScoped
+@ViewScoped
 public class ItemDomainLocationController extends ItemController<ItemDomainLocationControllerUtility, ItemDomainLocation, ItemDomainLocationFacade, ItemDomainLocationSettings> {
 
     private final String DOMAIN_TYPE_NAME = ItemDomainName.location.getValue();

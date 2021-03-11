@@ -30,6 +30,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,7 +38,7 @@ import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.model.TreeNode;
 
 @Named(ItemDomainMachineDesignInventoryController.controllerNamed)
-@SessionScoped
+@ViewScoped
 public class ItemDomainMachineDesignInventoryController extends ItemDomainMachineDesignController implements IItemStatusController {
 
     public final static String controllerNamed = "itemDomainMachineDesignInventoryController";

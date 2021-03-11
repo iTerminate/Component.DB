@@ -38,7 +38,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -126,6 +128,19 @@ public abstract class CdbEntityController<ControllerUtility extends CdbEntityCon
     @PostConstruct
     public void initialize() {
         settingObject.updateSettings();
+                
+        Object currentId = FacesContext.getCurrentInstance().getExternalContext().getFlash().get("someId");
+        if (currentId != null) {
+            current = getEntityDbFacade().find(currentId);
+        }
+    }
+
+    @PreDestroy
+    public void dest() {
+        System.out.println("Destroying: " + this);
+        if (current != null) {
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().put("someId", current.getId());
+        }
     }
 
     public void registerSearchable() {
@@ -709,9 +724,10 @@ public abstract class CdbEntityController<ControllerUtility extends CdbEntityCon
      */
     public String prepareView(EntityType entity) {
         logger.debug("Preparing view");
-        current = entity;
-        settingObject.updateSettings();
-        prepareEntityView(entity);
+        
+//        current = entity;
+//        settingObject.updateSettings();
+//        prepareEntityView(entity);
         return view();
     }
 
@@ -721,6 +737,7 @@ public abstract class CdbEntityController<ControllerUtility extends CdbEntityCon
      * @return URL to view page in the entity folder
      */
     public String view() {
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("someId", current.getId());
         return "view?faces-redirect=true";
     }
 
@@ -920,8 +937,9 @@ public abstract class CdbEntityController<ControllerUtility extends CdbEntityCon
      * @return URL to edit page
      */
     public String prepareEdit(EntityType entity) {
-        resetLogText();
-        current = entity;
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("someId", current.getId());
+//        resetLogText();
+//        current = entity;
         return edit();
     }
 
@@ -977,8 +995,7 @@ public abstract class CdbEntityController<ControllerUtility extends CdbEntityCon
         resetListDataModel();
         resetSelectDataModel();
         resetLogText();
-
-        reloadCurrent();
+        
         completeEntityUpdate(entity);
     }
 

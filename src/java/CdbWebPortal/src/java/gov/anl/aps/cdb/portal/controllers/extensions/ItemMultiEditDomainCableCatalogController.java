@@ -18,26 +18,21 @@ import javax.inject.Named;
 @Named(ItemMultiEditDomainCableCatalogController.controllerNamed)
 @SessionScoped
 public class ItemMultiEditDomainCableCatalogController extends ItemMultiEditController implements Serializable {
-    
+
     public final static String controllerNamed = "itemMultiEditDomainCableCatalogController";
-    
-    private ItemDomainCableCatalogController itemDomainCatalogController = null; 
 
     @Override
     protected ItemController getItemController() {
-        if (itemDomainCatalogController == null) {
-            itemDomainCatalogController = ItemDomainCableCatalogController.getInstance();
-        }
-        return itemDomainCatalogController; 
+        return ItemDomainCableCatalogController.getInstance();
     }
 
     @Override
     protected String getControllerNamedConstant() {
-        return controllerNamed; 
+        return controllerNamed;
     }
-    
+
     public static ItemMultiEditDomainCableCatalogController getInstance() {
         return (ItemMultiEditDomainCableCatalogController) SessionUtility.findBean(controllerNamed);
-    }   
-    
+    }
+
 }

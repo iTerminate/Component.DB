@@ -36,8 +36,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.event.SelectEvent;
@@ -48,7 +48,7 @@ import org.primefaces.model.TreeNode;
  * @author cmcchesney
  */
 @Named(ItemDomainCableDesignController.CONTROLLER_NAMED)
-@SessionScoped
+@ViewScoped
 public class ItemDomainCableDesignController extends ItemController<ItemDomainCableDesignControllerUtility, ItemDomainCableDesign, ItemDomainCableDesignFacade, ItemDomainCableDesignSettings> {
 
     @Override

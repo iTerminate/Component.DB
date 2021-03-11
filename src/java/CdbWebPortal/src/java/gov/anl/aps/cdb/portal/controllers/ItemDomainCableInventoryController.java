@@ -19,7 +19,7 @@ import gov.anl.aps.cdb.portal.view.objects.ImportExportFormatInfo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -27,7 +27,7 @@ import javax.inject.Named;
  * @author djarosz
  */
 @Named(ItemDomainCableInventoryController.CONTROLLER_NAMED)
-@SessionScoped
+@ViewScoped
 public class ItemDomainCableInventoryController extends ItemDomainInventoryBaseController<ItemDomainCableInventoryControllerUtility, ItemDomainCableInventory, ItemDomainCableInventoryFacade, ItemDomainCableInventorySettings> {
     
     public static final String ITEM_DOMAIN_CABLE_INVENTORY_STATUS_PROPERTY_TYPE_NAME = "Cable Instance Status";
