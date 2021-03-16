@@ -18,8 +18,8 @@ import gov.anl.aps.cdb.portal.view.objects.ImportExportFormatInfo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.omnifaces.cdi.ViewScoped;
 
 /**
  *
