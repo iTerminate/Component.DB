@@ -59,6 +59,29 @@ See LICENSE file.
                                 </p:outputLabel>        
                                 <p:remoteCommand name="resetPortalSession"
                                                  action="#{loginController.resetSession()}"/> 
+
+                                <br/>
+                                <p:outputLabel id="jumpToQrId"
+                                               styleClass="clckableLabel"
+                                               onclick="PF('jumpToQrIdDialogWidget').show()"
+                                               value="Jump to QRID">
+                                    <p:tooltip for="jumpToQrId" 
+                                               value="Enter a qrid and be forwarded to item with that qrid." />
+                                </p:outputLabel>
+                                
+                                <p:dialog widgetVar="jumpToQrIdDialogWidget"
+                                          resizable="false"
+                                          modal="true"
+                                          header="Jump to Item by QrId"
+                                          styleClass="viewTransparentBackgroundDialog">
+                                    <h:inputText value="#{facesUtility.jumpToQrIdEntry}" />
+                                    
+                                    <p:defaultCommand target="jumpToQrIdCommandButton" />
+                                    <p:commandButton id="jumpToQrIdCommandButton"
+                                                     action="#{facesUtility.jumpToItemQrId()}"
+                                                     value="Go"
+                                                     onclick="PF('loadingDialog').show()"/> 
+                                </p:dialog>
                             </h:form>
 
                             <ui:include src="../views/settings/private/settingsViewAsLabelDialog.xhtml" />
